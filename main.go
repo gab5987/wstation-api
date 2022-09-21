@@ -1,5 +1,7 @@
 package main
 
+import "github.com/gin-gonic/gin"
+
 type measurement struct {
 	ID    string  `json:"id"`
 	Value float32 `json:"value"`
@@ -11,5 +13,8 @@ var measurements = []measurement{
 }
 
 func main() {
+	router := gin.Default()
+	router.GET("/measurements", getMeasurements)
 
+	router.Run("localhost:8080")
 }
