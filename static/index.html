@@ -2,22 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Colour</title>
+    <title>WStation API - main</title>
 </head>
+<style>
+    body {
+        background-color: #f0f0f0;
+    }
+
+    h1 {
+        font-size: 45px;
+        color: indigo;
+        margin-left: 20px;
+        font-family: verdana;
+    } 
+    p {
+        font-size: 20px;
+        font-family: verdana;
+        margin-left: 20px;
+    }
+    .list {
+        font-size: 20px;
+        font-family: verdana;
+        margin-left: 20px;
+    }
+</style>
+
 <body>
+<h1> yeah, the dev got lazy on this page ik ik :( </h1>
+<p>But it doesnt really matters, the main purpose of this page is just to to show you the routes of the API</p>
+<p>So, without further ado, here they are:</p>
 
-<p>
-    A list of colours
-</p>
-
-<ul>
-    <li>red</li>
-    <li>green</li>
-</ul>
-
-<footer>
-    A footer
-</footer>
+<div class="list">
+    <ul>
+        <li> <a href="/measurements">/measurements </a> </li>
+        <li> <a href="/measurements/last"> /measurements/last </a> </li>
+    </ul>
+</div>
+<br/>
+<p>But, what the heck does those routes do? you may ask...</p>
+<p>Well, heres the explanation:</p>
+<div class="list">
+    <ul>
+        <li> /measurements -> returns all the data from the db, as well as handles new posts</li> <br/>
+        <li> /measurements/last -> returns the last row of the db </li>
+    </ul>
+</div>
+<br/>
+<p>The repository for this API is avaliable <a href="">here</a></p>
+<p>You can acces the admin console(and i promise its a better looking page) <a href="">here</a></p>
+<p>And thats pretty much what it is, looking forward to add more routes for this project</p>
 
 </body>
 </html>
