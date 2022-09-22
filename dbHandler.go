@@ -16,7 +16,7 @@ func connectToDb() (*sql.DB, error) {
 	return db, err
 }
 
-func getAllMeasurements() []string {
+func getAllMeasurementsFromDB() []string {
 	db, err := connectToDb()
 	response, err := db.Query("SELECT * FROM measurements")
 	if err != nil {
@@ -56,4 +56,28 @@ func postMeasurementToDB(newMeasurement measurement) {
 		panic(err)
 	}
 	defer db.Close()
+}
+
+func getLastMeasurementFromDB() string {
+	db, err := connectToDb()
+	if err != nil {
+		panic(err)
+	}
+
+	response, err := db.Query("SELECT * FROM measurements ORDER BY id DESC LIMIT 1")
+	mst := ""
+	for response.Next() {
+		var id int
+		var temperature float32
+		var heatIndex float32
+		var humidity float32
+		var timestamp string
+
+		err = response.Scan(&id, &temperature, &heatIndex, &humidity, &timestamp)
+		if err != nil {
+			panic(err)
+		}
+		mst = fmt.Sprintf("%d$%f$%f$%f$%s\n", id, temperature, heatIndex, humidity, timestamp)
+	}
+	return fmt.Sprintf("%v", mst)
 }

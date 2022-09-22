@@ -23,6 +23,7 @@ var measurements = []measurement{
 func main() {
 	router := gin.Default()
 	router.GET("/measurements", getMeasurements)
+	router.GET("/measurements/last", getLastMeasurement)
 	router.POST("/measurements", postMeasurement)
 
 	router.Run("localhost:8080")
