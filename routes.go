@@ -8,7 +8,7 @@ import (
 
 // getMeasurements returns all measurements
 func getMeasurements(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, measurements)
+	c.IndentedJSON(http.StatusOK, getAllMeasurements())
 }
 
 // postMeasurement adds a new measurement
