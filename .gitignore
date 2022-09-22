@@ -22,3 +22,4 @@ go.work
 
 # Machine specific
 .DS_Store
+.env
