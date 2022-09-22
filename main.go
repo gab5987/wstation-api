@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 	"os"
-	"github.com/joho/godotenv"
-	"fmt"
+
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 type measurement struct {
@@ -21,21 +21,19 @@ var measurements = []measurement{
 }
 
 func main() {
-	fmt.Printf("%v", getAllMeasurements())
-	
 	router := gin.Default()
 	router.GET("/measurements", getMeasurements)
-	// router.POST("/measurements", postMeasurement)
+	router.POST("/measurements", postMeasurement)
 
 	router.Run("localhost:8080")
 }
 
 func getDotEnvVAriable(key string) string {
 	err := godotenv.Load(".env")
-  
+
 	if err != nil {
-	  log.Fatalf("Error loading .env file")
+		log.Fatalf("Error loading .env file")
 	}
-  
+
 	return os.Getenv(key)
-  }
+}

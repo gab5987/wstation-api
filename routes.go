@@ -17,8 +17,6 @@ func postMeasurement(c *gin.Context) {
 	if err := c.BindJSON(&newMeasurement); err != nil {
 		return
 	}
-	newMeasurement.ID = measurements[len(measurements)-1].ID + 1
-
-	measurements = append(measurements, newMeasurement)
+	postMeasurementToDB(newMeasurement)
 	c.IndentedJSON(http.StatusCreated, newMeasurement)
 }
