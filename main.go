@@ -22,10 +22,12 @@ var measurements = []measurement{
 
 func main() {
 	router := gin.Default()
+	router.LoadHTMLGlob("static/*.html")
+	router.GET("/", getMainPage) // returns a page containing information about the api
+
 	router.GET("/measurements", getMeasurements)
 	router.GET("/measurements/last", getLastMeasurement)
 	router.POST("/measurements", postMeasurement)
-
 	router.Run("localhost:8080")
 }
 

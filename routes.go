@@ -6,6 +6,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func getMainPage(c *gin.Context) {
+	c.HTML(http.StatusOK, "index.html", nil)
+}
+
 // getMeasurements returns all measurements
 func getMeasurements(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, getAllMeasurementsFromDB())
