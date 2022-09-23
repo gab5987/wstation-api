@@ -22,7 +22,8 @@ var measurements = []measurement{
 
 func main() {
 	router := gin.Default()
-	router.LoadHTMLGlob("static/*.html")
+	router.LoadHTMLFiles("static/index.php", "static/err.html")
+	router.Static("/static", "./static/")
 	router.GET("/", getMainPage) // returns a page containing information about the api
 
 	router.GET("/measurements", getMeasurements)
