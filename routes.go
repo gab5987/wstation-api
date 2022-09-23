@@ -6,8 +6,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// getMainPage returns the main page of the api
 func getMainPage(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.php", nil)
+}
+
+// catchErrorPage returns the error page in case of a 404 or smth
+func catchErrorPage(c *gin.Context) {
+	c.HTML(http.StatusNotFound, "err.html", nil)
 }
 
 // getMeasurements returns all measurements

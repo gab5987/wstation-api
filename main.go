@@ -24,6 +24,8 @@ func main() {
 	router := gin.Default()
 	router.LoadHTMLFiles("static/index.php", "static/err.html")
 	router.Static("/static", "./static/")
+	router.NoRoute(catchErrorPage)
+
 	router.GET("/", getMainPage) // returns a page containing information about the api
 
 	router.GET("/measurements", getMeasurements)
