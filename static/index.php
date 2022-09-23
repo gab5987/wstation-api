@@ -3,30 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>WStation API - main</title>
+    <link rel="stylesheet" href="./static/index.css">
 </head>
-<style>
-    body {
-        background-color: #f0f0f0;
-    }
-
-    h1 {
-        font-size: 45px;
-        color: indigo;
-        margin-left: 20px;
-        font-family: verdana;
-    } 
-    p {
-        font-size: 20px;
-        font-family: verdana;
-        margin-left: 20px;
-    }
-    .list {
-        font-size: 20px;
-        font-family: verdana;
-        margin-left: 20px;
-    }
-</style>
-
 <body>
 <h1> yeah, the dev got lazy on this page ik ik :( </h1>
 <p>But it doesnt really matters, the main purpose of this page is just to to show you the routes of the API</p>

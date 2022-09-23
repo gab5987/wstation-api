@@ -7,7 +7,7 @@ import (
 )
 
 func getMainPage(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.html", nil)
+	c.HTML(http.StatusOK, "index.php", nil)
 }
 
 // getMeasurements returns all measurements
