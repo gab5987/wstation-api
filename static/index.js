@@ -6,6 +6,6 @@ fetch('/measurements/last')
         });
 
 function getData(epochTime) {
-    return epochTime
-    // TODO
+    epochTime = Number(epochTime);
+    return new Date(epochTime * 1000)
 }
