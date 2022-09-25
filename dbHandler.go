@@ -81,3 +81,13 @@ func getLastMeasurementFromDB() string {
 	}
 	return fmt.Sprintf("%v", mst)
 }
+
+func getMeasurementsGreaterthanFromDB(id string) []string {
+	return []string{"test " + id}
+	// TODO
+}
+
+func getMeasurementsTempGreaterThanFromDB(temp string) []string {
+	return []string{"test " + temp}
+	// TODO
+}

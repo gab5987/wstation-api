@@ -35,3 +35,13 @@ func postMeasurement(c *gin.Context) {
 func getLastMeasurement(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, getLastMeasurementFromDB())
 }
+
+func getMeasurementsGreaterthan(c *gin.Context) {
+	id := c.Query("id")
+	c.IndentedJSON(http.StatusOK, getMeasurementsGreaterthanFromDB(id))
+}
+
+func getMeasurementsTempGreaterThan(c *gin.Context) {
+	temp := c.Query("temp")
+	c.IndentedJSON(http.StatusOK, getMeasurementsTempGreaterThanFromDB(temp))
+}

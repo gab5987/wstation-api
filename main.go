@@ -30,6 +30,9 @@ func main() {
 
 	router.GET("/measurements", getMeasurements)
 	router.GET("/measurements/last", getLastMeasurement)
+	router.GET("/measurements/greaterthan", getMeasurementsGreaterthan)
+	router.GET("/measurements/tempgreaterthan", getMeasurementsTempGreaterThan)
+
 	router.POST("/measurements", postMeasurement)
 	router.Run("localhost:8080")
 }
