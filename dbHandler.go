@@ -16,15 +16,8 @@ func connectToDb() (*sql.DB, error) {
 	return db, err
 }
 
-func getAllMeasurementsFromDB() []string {
-	db, err := connectToDb()
-	response, err := db.Query("SELECT * FROM measurements")
-	if err != nil {
-		panic(err)
-	}
-
-	allMst := []string{}
-
+func getResponseFromDb(response *sql.Rows, err error) []string {
+	mst := []string{}
 	for response.Next() {
 		var id int
 		var temperature float32
@@ -36,12 +29,21 @@ func getAllMeasurementsFromDB() []string {
 		if err != nil {
 			panic(err)
 		}
-		mst := fmt.Sprintf("%d$%f$%f$%f$%s\n", id, temperature, heatIndex, humidity, timestamp)
-
-		allMst = append(allMst, mst)
+		mst = append(mst, fmt.Sprintf("%d$%f$%f$%f$%s\n", id, temperature, heatIndex, humidity, timestamp))
 	}
+	return mst
+}
+
+func getAllMeasurementsFromDB() []string {
+	db, err := connectToDb()
+	response, err := db.Query("SELECT * FROM measurements ORDER BY id DESC")
+	if err != nil {
+		panic(err)
+	}
+	mst := getResponseFromDb(response, err)
+
 	defer db.Close()
-	return allMst
+	return mst
 }
 
 func postMeasurementToDB(newMeasurement measurement) {
@@ -83,11 +85,23 @@ func getLastMeasurementFromDB() string {
 }
 
 func getMeasurementsGreaterthanFromDB(id string) []string {
-	return []string{"test " + id}
-	// TODO
+	db, err := connectToDb()
+	if err != nil {
+		panic(err)
+	}
+	response, err := db.Query("SELECT * FROM measurements ORDER BY id DESC LIMIT " + id)
+
+	mst := getResponseFromDb(response, err)
+	return mst
 }
 
 func getMeasurementsTempGreaterThanFromDB(temp string) []string {
-	return []string{"test " + temp}
-	// TODO
+	db, err := connectToDb()
+	if err != nil {
+		panic(err)
+	}
+	response, err := db.Query("SELECT * FROM measurements WHERE temperature >= " + temp + " ORDER BY id DESC")
+
+	mst := getResponseFromDb(response, err)
+	return mst
 }
