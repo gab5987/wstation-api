@@ -14,6 +14,8 @@
         <ul>
             <li> <a href="/measurements">/measurements </a> </li>
             <li> <a href="/measurements/last"> /measurements/last </a> </li>
+            <li> <a href="/measurements/tempgreaterthan?temp=0"> /measurements/tempgreaterthan </a> </li>
+            <li> <a href="/measurements/greaterthan?id=0"> /measurements/greaterthan </a> </li>
         </ul>
     </div>
     <br/>
@@ -24,6 +26,8 @@
         <ul>
             <li> /measurements -> returns all the data from the db, as well as handles new posts</li> <br/>
             <li> /measurements/last -> returns the last row of the db </li>
+            <li> /measurements/tempgreaterthan -> returns all the temparatures greter than the given temp </li>
+            <li> /measurements/greaterthan -> returns all data greater than the given index </li>
         </ul>
     </div>
     <br/>
@@ -43,3 +47,6 @@
     <script src="./static/index.js"></script>
 </body>
 </html>
+
+"/measurements/greaterthan", getMeasurementsGreaterthan)
+	router.GET("/measurements/tempgreaterthan"
