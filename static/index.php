@@ -47,6 +47,3 @@
     <script src="./static/index.js"></script>
 </body>
 </html>
-
-"/measurements/greaterthan", getMeasurementsGreaterthan)
-	router.GET("/measurements/tempgreaterthan"

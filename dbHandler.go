@@ -34,6 +34,36 @@ func getResponseFromDb(response *sql.Rows, err error) []string {
 	return mst
 }
 
+func getAverages() {
+	db, err := connectToDb()
+	if err != nil {
+		panic(err)
+	}
+	response, err := db.Query("SELECT AVG(temperature), AVG(heatIndex), AVG(humidity) FROM measurements")
+
+	stmt := ""
+	for response.Next() {
+		var temperature float32
+		var heatIndex float32
+		var humidity float32
+
+		err = response.Scan(&temperature, &heatIndex, &humidity)
+		if err != nil {
+			panic(err)
+		}
+		avgTemperature := temperature
+		avgHeatIndex := heatIndex
+		avgHumidity := humidity
+
+		stmt = "VALUES (NULL," + fmt.Sprintf("%v", avgTemperature) + "," + fmt.Sprintf("%v", avgHeatIndex) + "," + fmt.Sprintf("%v", avgHumidity) + ")"
+	}
+	_, err = db.Query("INSERT INTO `averages`" + stmt)
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+}
+
 func getAllMeasurementsFromDB() []string {
 	db, err := connectToDb()
 	response, err := db.Query("SELECT * FROM measurements ORDER BY id DESC")
@@ -57,6 +87,7 @@ func postMeasurementToDB(newMeasurement measurement) {
 	if err != nil {
 		panic(err)
 	}
+	getAverages()
 	defer db.Close()
 }
 
