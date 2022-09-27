@@ -34,7 +34,7 @@ func main() {
 	router.GET("/measurements/tempgreaterthan", getMeasurementsTempGreaterThan)
 
 	router.POST("/measurements", postMeasurement)
-	router.Run("localhost:8080")
+	router.Run("192.168.0.13:8080")
 }
 
 func getDotEnvVAriable(key string) string {
