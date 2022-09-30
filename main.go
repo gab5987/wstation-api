@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	cors "github.com/rs/cors/wrapper/gin"
 )
 
 type measurement struct {
@@ -22,6 +23,8 @@ var measurements = []measurement{
 
 func main() {
 	router := gin.Default()
+	router.Use(cors.Default())
+
 	router.LoadHTMLFiles("static/index.php", "static/err.html")
 	router.Static("/static", "./static/")
 	router.NoRoute(catchErrorPage)
@@ -34,7 +37,7 @@ func main() {
 	router.GET("/measurements/tempgreaterthan", getMeasurementsTempGreaterThan)
 
 	router.POST("/measurements", postMeasurement)
-	router.Run("192.168.0.13:8080")
+	router.Run(":8080")
 }
 
 func getDotEnvVAriable(key string) string {
